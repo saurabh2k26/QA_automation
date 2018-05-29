@@ -1,0 +1,48 @@
+#!/usr/bin/python
+
+import thread
+import time
+import sys
+
+a = [5,12,1,3,7,31,6,121,30,123,67,42]
+b = 0
+
+def square(i):
+    time.sleep(2)
+    return i * i
+
+def speed_up( threadName):
+    global a
+    global b
+    while(len(a)>0):
+        i = a.pop(0)
+        print threadName+ " :square of "+str(i)+ " is: "+str(square(i))+"\n"
+        b=b+1
+        
+try:
+   start_time = time.time()
+   thread.start_new_thread( speed_up, ("Thread-1",) )
+   thread.start_new_thread( speed_up, ("Thread-2",) )
+   thread.start_new_thread( speed_up, ("Thread-3",) )
+   thread.start_new_thread( speed_up, ("Thread-4",) )
+   while b<12:
+       elapsed_time = time.time() - start_time
+   print "total time taken is " + str(elapsed_time)
+except:
+   print "Error: unable to start thread"
+
+##Output:
+##Thread-3 :square of 1 is: 1
+##Thread-4 :square of 12 is: 144
+##Thread-1 :square of 3 is: 9
+##Thread-2 :square of 5 is: 25
+##Thread-3 :square of 7 is: 49
+##Thread-4 :square of 31 is: 961
+##Thread-1 :square of 6 is: 36
+##Thread-2 :square of 121 is: 14641
+##Thread-3 :square of 30 is: 900
+##Thread-4 :square of 123 is: 15129
+##Thread-1 :square of 67 is: 4489
+##Thread-2 :square of 42 is: 1764
+##
+##total time taken is 6.57117295265
