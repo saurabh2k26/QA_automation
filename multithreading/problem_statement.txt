@@ -1,0 +1,4 @@
+There is an array of 12 numbers.
+There is a function square which returns square of given number after a sleep of 2 seconds.
+
+Goal: Write a program to use 4 threads, so that you can get square of all 12 numbers in least possible time.
